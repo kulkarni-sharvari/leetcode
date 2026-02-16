@@ -23,15 +23,15 @@ This repository contains my solutions to various LeetCode problems. Each solutio
 
 | # | Title | Difficulty | Topics | Solution |
 |---|-------|------------|--------|----------|
-| 49 | Group Anagram | Medium | Array, Hash Table | [Link](./Medium/GroupAnagram.py) |
-| 347 |Top K Frequent Elements | Medium | Hash Table | [Link](./Medium/TopKFrequentElements.py) |
+| 49 | Group Anagram | Medium | Array, Hash Table | [Link](./medium/GroupAnagram.py) |
+| 347 |Top K Frequent Elements | Medium | Hash Table | [Link](./medium/TopKFrequentElements.py) |
 | ... | ... | ... | ... | ... |
 
 ## Usage
 
 Each solution file is self-contained and can be run independently:
 ```python
-python Medium/GroupAnagram.py
+python medium/GroupAnagram.py
 ```
 
 ## Complexity Notation
