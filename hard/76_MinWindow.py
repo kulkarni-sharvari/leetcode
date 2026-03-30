@@ -77,3 +77,50 @@ print(result)
 # Therefore timecomplexity = O(len(s)*len(t))
 
 # Space complexity: O(k) where k denotes the number of unique characters in t.
+
+
+# Solution 2 (better)
+class Solution2:
+    def minWindow(self, s: str, t: str) -> str:
+        m = len(s)
+        n = len(t)
+        result = [-1,-1]
+        resultLen = float('infinity')
+        left = 0
+        freqNeed = {}
+        need = 0
+        freqHave = {}
+        conditionsMet = 0
+
+        # from example 3
+        if m<n:
+            return ""
+
+        # Time complexity = 𝚹(n)
+        # Space complexity = unique characters in t => O(n)
+        for char in t:
+            freqNeed[char] = freqNeed.get(char, 0) + 1
+        need = len(freqNeed)
+        
+        # Time complexity = 𝚹(m)
+        # space complexity = unique characters in s => O(m)
+        for right in range(m):
+            char = s[right]
+            freqHave[char] = freqHave.get(char, 0) + 1
+            # check if condition is met "for the first time"
+            if char in freqNeed and freqNeed[char] == freqHave[char]:
+                conditionsMet += 1
+            while conditionsMet == need:
+                if resultLen > right-left+1:
+                    resultLen = right-left+1
+                    result = [left,right+1]
+                freqHave[s[left]] -=1
+                if s[left] in freqNeed and freqNeed[s[left]] == 1 + freqHave[s[left]]:
+                    conditionsMet -= 1
+                left+=1
+        l,r = result
+        return s[l:r] if resultLen!=float('infinity') else ""
+    
+
+# Time complexity for Solution 2 = 𝚹(m+n)
+# space complexity in worst case = O(m+n)
