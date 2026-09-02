@@ -32,18 +32,16 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        
-        if head is None:
-            return False
 
-        p1 = head
-        p2= head.next
+        slow = head
+        fast = head
 
-        while p2 and p2.next:
-            if p1 == p2:
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if fast == slow:
                 return True
-           
-            p1 = p1.next
-            p2= p2.next.next
-                
+        
         return False
+        
