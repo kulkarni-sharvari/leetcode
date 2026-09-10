@@ -28,3 +28,28 @@ class Solution:
 ################################## Complexity ##################################
 # Time complexity: Θ(n)
 # Space complexity: O(1)
+
+################################### Solution ###################################
+from collections import deque
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return 
+
+        bfs = deque([root])
+        
+        while bfs:
+            parent = bfs.popleft()
+            parent.left, parent.right = parent.right, parent.left
+
+            if parent.left:
+                bfs.append(parent.left)
+            if parent.right:
+                bfs.append(parent.right)       
+        
+        return root
+
+################################## Complexity ##################################
+# Time complexity: Θ(n)
+# Space complexity: O(n)
