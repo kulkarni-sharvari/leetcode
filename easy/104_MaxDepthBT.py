@@ -5,6 +5,7 @@
 # A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 ################################### Examples ###################################
+
 # Example 1:
 # Input: root = [3,9,20,null,null,15,7]
 # Output: 3
@@ -32,5 +33,6 @@ class Solution:
         return 1 + max(leftHeight, rightHeight)
 
 ################################## Complexity ##################################
+
 # Time complexity: Θ(n)
 # Space complexity: O(n)
