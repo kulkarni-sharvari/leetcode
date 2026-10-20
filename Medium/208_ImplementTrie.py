@@ -1,0 +1,98 @@
+# 208. Implement Trie (Prefix Tree) - https://leetcode.com/problems/implement-trie-prefix-tree/description/
+
+# A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+
+# Implement the Trie class:
+
+# Trie() Initializes the trie object.
+# void insert(String word) Inserts the string word into the trie.
+# boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
+# boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
+
+################################### Examples ###################################
+
+# Example 1:
+# Input
+# ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+# [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+
+# Output
+# [null, null, true, false, true, null, true]
+
+# Explanation
+# Trie trie = new Trie();
+# trie.insert("apple");
+# trie.search("apple");   // return True
+# trie.search("app");     // return False
+# trie.startsWith("app"); // return True
+# trie.insert("app");
+# trie.search("app");     // return True
+
+################################### Solution ###################################
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
+
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+        
+
+    def insert(self, word: str) -> None:
+        node = self.root
+
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+
+            node = node.children[char]
+        
+        node.is_end = True
+        
+
+    def search(self, word: str) -> bool:
+        node = self.root
+
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        
+        return node.is_end
+
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
+
+################################## Complexity ##################################
+
+# insert:
+# Time: O(L), where L is the length of the word.
+# Space: O(L) worst-case additional space for new nodes.
+
+# search:
+# Time: O(L), where L is the length of the word.
+# Space: O(1) auxiliary space.
+
+# startsWith:
+# Time: O(L), where L is the length of the prefix.
+# Space: O(1) auxiliary space.
+
+# Overall Trie storage:
+# Space: O(N), where N is the total number of characters
+# across all inserted words, in the worst case.
