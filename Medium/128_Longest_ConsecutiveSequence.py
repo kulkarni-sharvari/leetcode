@@ -45,3 +45,23 @@ class Solution:
 # Space Complexity: O(n)
 # sortedNum[] holds the number of unique elements in nums in sorted order.
 # In worst case, all elements can be unique. So Space Complexity = O(n)
+
+################################## Solution 2 ##################################
+
+class Solution:
+    def longestConsecutive(self, nums: list[int]) -> int:
+        if not nums:
+            return 0
+
+        unique = set(nums)
+        count, maxlen = 1,1
+        for num in unique:
+            if num-1 not in unique:
+                count = 1
+                current = num
+                while current+1 in unique:
+                    count +=1
+                    current = current+1
+                maxlen = max(maxlen, count)
+
+        return maxlen
