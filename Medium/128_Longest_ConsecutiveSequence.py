@@ -19,17 +19,22 @@
 
 
 class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
-        maxCount = 0
-        sortedNums = sorted(list(set(nums)))
-        p1 = 0
-        p2 = 0
-        while(p2<len(sortedNums)):
-            if p2>0 and sortedNums[p2] - 1 != sortedNums[p2-1]:
-                p1 = p2
-            p2+=1
-            maxCount = max(maxCount, p2-p1)
-        return maxCount
+    def longestConsecutive(self, nums: list[int]) -> int:
+        if not nums:
+            return 0
+
+        unique = sorted(list(set(nums)))
+        prev, n, count, maxlen = unique[0], len(unique), 1,1
+
+        for i in range(1, n):
+            if prev == unique[i] - 1:
+                count+=1
+            else:
+                count = 1
+            maxlen = max(maxlen, count)
+            prev = unique[i]
+            
+        return maxlen
 
 # Time Complexity: O(nlgn) 
 # Python uses Tim sort under the hood for sorting. It takes O(nlgn).
